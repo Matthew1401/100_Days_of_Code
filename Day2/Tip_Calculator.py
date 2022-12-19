@@ -13,4 +13,3 @@ people = int(input("How many people to split the bill? "))
 
 cost_for_person = total_bill / people * (tip / 100 + 1)
 print("Each person should pay: $", round(cost_for_person, 2))
-print("just for change")
