@@ -23,12 +23,12 @@ total2 += name1.count("v") + name2.count("v")
 total2 += name1.count("e") + name2.count("e")
 
 
-total = str(total1) + str(total2)
+total = str(total1) + str(total2) # total = int(str(total1) + str(total2))
 total_as_int = int(total)
 
 if 10 > total_as_int or 90 < total_as_int:
     print(f"Your score is {total_as_int}, you go together like coke and mentos.")
-elif 40 < total_as_int > 50:
+elif 40 < total_as_int < 50:
     print(f"Your score is {total_as_int}, you are alright together.")
 else:
-    print(f"Your score is {total_as_int}")
+    print(f"Your score is {total_as_int}.")
