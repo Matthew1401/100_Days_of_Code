@@ -37,21 +37,11 @@ computer_choose = random.randint(0, 2)
 
 
 # GUI system
-if player_choose == 0:
-    print(rock)
-elif player_choose == 1:
-    print(paper)
-elif player_choose == 2:
-    print(scissors)
-
+game_images = [rock, paper, scissors]
+print(game_images[player_choose - 1])
 
 print('Computer chose:')
-if computer_choose == 0:
-    print(rock)
-elif computer_choose == 1:
-    print(paper)
-elif computer_choose == 2:
-    print(scissors)
+print(game_images[computer_choose - 1])
 
 
 # Logical system
