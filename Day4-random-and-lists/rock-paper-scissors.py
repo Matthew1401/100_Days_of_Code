@@ -35,6 +35,8 @@ scissors = """
 player_choose = int(input("What do you choose? Type 0 for Rock, 1 for Paper or 2 for Scissors.\n"))
 computer_choose = random.randint(0, 2)
 
+
+# GUI system
 if player_choose == 0:
     print(rock)
 elif player_choose == 1:
@@ -52,26 +54,16 @@ elif computer_choose == 2:
     print(scissors)
 
 
-if not 0 <= player_choose <=2:
-    print("You have not choose right choice. You lose. ez...")
-elif player_choose == 0: # Rock
-    if computer_choose == 0: # rock
-        print("There is a draw.")
-    elif computer_choose == 1: # paper
-        print("You lose.")
-    elif computer_choose == 2: # scissors
-        print("You won!")
-elif player_choose == 1: # Paper
-    if computer_choose == 0: # rock
-        print("You won!")
-    elif computer_choose == 1: # paper
-        print("There is a draw.")
-    elif computer_choose == 2: # scissors
-        print("You lose.")
-elif player_choose == 2: # Scissors
-    if computer_choose == 0: # rock
-        print("You lose.")
-    elif computer_choose == 1: # paper
-        print("You won!")
-    elif computer_choose == 2: # scissors
-        print("There is a draw.")
+# Logical system
+if player_choose >= 3 or player_choose < 0:
+    print("You typed an invalid number. You lose.")
+elif player_choose == 0 and computer_choose == 2:
+    print("You win.")
+elif computer_choose == 0 and player_choose == 2:
+    print("You lose.")
+elif player_choose > computer_choose:
+    print("You win.")
+elif computer_choose > player_choose:
+    print("You lose.")
+elif player_choose == computer_choose:
+    print("It's a draw.")
