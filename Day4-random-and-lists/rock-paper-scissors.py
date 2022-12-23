@@ -56,4 +56,4 @@ elif player_choose > computer_choose:
 elif computer_choose > player_choose:
     print("You lose.")
 elif player_choose == computer_choose:
-    print("It's a draw.")
+    print("It's a draw.") #just for git history XD
