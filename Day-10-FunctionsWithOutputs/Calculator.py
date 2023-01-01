@@ -27,17 +27,28 @@ operations = {
 num1 = int(input("What's the first number?: "))
 for symbol in operations:
     print(symbol)
-operation_symbol = input("Pick an operation from the above: ")
-num2 = int(input("What's the second number?: "))
+should_continue = True
 
-calculation_function = operations[operation_symbol]
-first_answer = calculation_function(num1, num2)
+while should_continue:
+    operation_symbol = input("Pick an operation: ")
+    num2 = int(input("What's the next number?: "))
+    calculation_function = operations[operation_symbol]
+    answer = calculation_function(num1, num2)
 
-print(f"{num1} {operation_symbol} {num2} = {first_answer}")
+    print(f"{num1} {operation_symbol} {num2} = {answer}")
 
-operation_symbol = input("Pick another operation: ")
-num3 = int(input("What's the next number?: "))
-calculation_function = operations[operation_symbol]
-second_answer = calculation_function(first_answer, num3)
+    if input(f"Type 'y' to continue calculating with {answer}, or type 'n' to exit.: ") == "y":
+        num1 = answer
+    else:
+        should_continue = False
 
-print(f"{first_answer} {operation_symbol} {num3} = {second_answer}")
+# should_continue = True
+# while should_continue:
+#     operation_symbol = input("Pick another operation: ")
+#     num3 = int(input("What's the next number?: "))
+#     calculation_function = operations[operation_symbol]
+#     second_answer = calculation_function(first_answer, num3)
+#     print(f"{first_answer} {operation_symbol} {num3} = {second_answer}")
+#     first_answer = second_answer
+#     should_continue = input(f"Type 'y' to continue calculating with {first_answer}, or type 'n' to exit.: ")
+
