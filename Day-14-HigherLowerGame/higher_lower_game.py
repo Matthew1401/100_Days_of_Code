@@ -32,10 +32,13 @@ def get_input_from_user():
         elif user_choice == 'B': return 'B'
 
 def check_answer(user_choice):
-    global a_choose
+    global a_choose, score
     a_score = a_choose['follower_count']
     b_score = b_choose['follower_count']
-    if user_choice == 'A' and a_score > b_score: return score + 1
+    if a_score == b_score: return score + 1
+    elif user_choice == 'A' and a_score > b_score:
+        a_choose = b_choose
+        return score + 1
     elif user_choice == 'B' and a_score < b_score:
         a_choose = b_choose
         return score + 1
@@ -43,6 +46,7 @@ def check_answer(user_choice):
 
 
 def game():
+    global score, b_choose
     while is_game_over == False:
         clear()
         print(logo)
@@ -53,8 +57,13 @@ def game():
         print(f"Against B: {b_choose['name']}, a {b_choose['description']}, from {b_choose['country']}.")
 
         user_choice = get_input_from_user()
+        final_score = score
         score = check_answer(user_choice)
-        if score == 0: return
+        if score == 0: 
+            clear()
+            print(f"Sorry, that's wrong. Final score: {final_score}")
+            return
+        b_choose = get_b_choose()
     
 game()
 
