@@ -10,8 +10,9 @@ clear()
 NUMBER_OF_SEARCH = len(data)
 a_choose = data[random.randint(0, NUMBER_OF_SEARCH - 1)]
 a_choose_index = data.index(a_choose)
-b_choose = {}
 score = 0
+is_game_over = False
+winner = {}
 
 def get_b_choose():
     while True:
@@ -21,6 +22,8 @@ def get_b_choose():
         else:
             b_choose = data[b_choose_index]
             return b_choose
+        
+b_choose = get_b_choose()
 
 def get_input_from_user():
     while True:
@@ -28,15 +31,30 @@ def get_input_from_user():
         if user_choice == 'A': return 'A'
         elif user_choice == 'B': return 'B'
 
-
-def game():
-    print(logo)
-    print(f"Compare A: {a_choose['name']}, a {a_choose['description']}, from {a_choose['country']}.")
-    print(vs)
-    b_choose = get_b_choose()
-    print(f"Against B: {b_choose['name']}, a {b_choose['description']}, from {b_choose['country']}.")
-
-    user_choice = get_input_from_user()
+def check_answer(user_choice):
+    global a_choose
     a_score = a_choose['follower_count']
     b_score = b_choose['follower_count']
+    if user_choice == 'A' and a_score > b_score: return score + 1
+    elif user_choice == 'B' and a_score < b_score:
+        a_choose = b_choose
+        return score + 1
+    else: return 0
+
+
+def game():
+    while is_game_over == False:
+        clear()
+        print(logo)
+        if score > 0:
+            print(f"You're right! Current score: {score}.")
+        print(f"Compare A: {a_choose['name']}, a {a_choose['description']}, from {a_choose['country']}.")
+        print(vs)
+        print(f"Against B: {b_choose['name']}, a {b_choose['description']}, from {b_choose['country']}.")
+
+        user_choice = get_input_from_user()
+        score = check_answer(user_choice)
+        if score == 0: return
+    
+game()
 
