@@ -13,7 +13,7 @@ def eleven_into_one(hand=[]):
     return hand
 
 def player_deck(cards):
-    """Giving you a two random cards"""
+    """Giving you two random cards"""
     hand = [random.choice(cards), random.choice(cards)]
     if 11 in hand and sum(hand) > 21:
         hand.remove(11)
@@ -21,7 +21,7 @@ def player_deck(cards):
     return hand
 
 def computer_deck(cards):
-    """Giving you a dealer hand completly"""
+    """Giving you a dealer hand completely"""
     hand = [random.choice(cards), random.choice(cards)]
     if 11 in hand and sum(hand) > 21:
         hand.remove(11)
@@ -38,7 +38,7 @@ def computer_deck(cards):
 
 def take_another_card():
     while True:
-        should_take_another_card = input("Type 'y' to get another card, typr 'n' to pass: ")
+        should_take_another_card = input("Type 'y' to get another card, type 'n' to pass: ")
         if should_take_another_card == 'y': return True
         elif should_take_another_card == 'n': return False
         

@@ -7,20 +7,17 @@ import os
 clear = lambda: os.system('cls')
 clear()
 
-NUMBER_OF_SEARCH = len(data)
-a_choose = data[random.randint(0, NUMBER_OF_SEARCH - 1)]
-a_choose_index = data.index(a_choose)
+a_choose = random.choice(data)
 score = 0
 is_game_over = False
 winner = {}
 
 def get_b_choose():
     while True:
-        b_choose_index = random.randint(0, NUMBER_OF_SEARCH - 1)
-        if b_choose_index == a_choose_index:
+        b_choose = random.choice(data)
+        if b_choose == a_choose:
             continue
         else:
-            b_choose = data[b_choose_index]
             return b_choose
         
 b_choose = get_b_choose()
@@ -44,6 +41,13 @@ def check_answer(user_choice):
         return score + 1
     else: return 0
 
+def format_data(account):
+    account_name = account['name']
+    account_descr = account['description']
+    account_country = account['country']
+    return f"{account_name}, a {account_descr}, from {account_country}."
+
+
 
 def game():
     global score, b_choose
@@ -52,9 +56,9 @@ def game():
         print(logo)
         if score > 0:
             print(f"You're right! Current score: {score}.")
-        print(f"Compare A: {a_choose['name']}, a {a_choose['description']}, from {a_choose['country']}.")
+        print(f"Compare A: {format_data(a_choose)}")
         print(vs)
-        print(f"Against B: {b_choose['name']}, a {b_choose['description']}, from {b_choose['country']}.")
+        print(f"Against B: {format_data(b_choose)}")
 
         user_choice = get_input_from_user()
         final_score = score
