@@ -6,29 +6,34 @@ import os
 clear = lambda: os.system('cls')
 clear()
 
+CARDS = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
+
 def eleven_into_one(hand=[]):
     if 11 in hand and sum(hand) > 21:
         hand.remove(11)
         hand.append(1)
     return hand
 
-def player_deck(cards):
+
+def player_deck():
     """Giving you two random cards"""
-    hand = [random.choice(cards), random.choice(cards)]
+    hand = [random.choice(CARDS), random.choice(CARDS)]
     if 11 in hand and sum(hand) > 21:
         hand.remove(11)
         hand.append(1)
     return hand
 
-def computer_deck(cards):
+
+def computer_deck():
     """Giving you a dealer hand completely"""
-    hand = [random.choice(cards), random.choice(cards)]
+    hand = [random.choice(CARDS), random.choice(CARDS)]
     if 11 in hand and sum(hand) > 21:
         hand.remove(11)
         hand.append(1)
     while True:
         if sum(hand) < 17:
-            hand.append(random.choice(cards))
+            hand.append(random.choice(CARDS))
             if 11 in hand and sum(hand) > 21:
                 hand.remove(11)
                 hand.append(1)
@@ -36,14 +41,15 @@ def computer_deck(cards):
             break
     return hand
 
+
 def take_another_card():
     while True:
         should_take_another_card = input("Type 'y' to get another card, type 'n' to pass: ")
-        if should_take_another_card == 'y': return True
-        elif should_take_another_card == 'n': return False
+        if should_take_another_card == 'y':
+            return True
+        elif should_take_another_card == 'n':
+            return False
         
-
-cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 should_continue = True
 while should_continue:
@@ -54,21 +60,22 @@ while should_continue:
         break
     print(logo)
 
-    player_hand = player_deck(cards)
+    player_hand = player_deck()
     player_score = sum(player_hand)
     print(f"Your cards: {player_hand}, current score: {player_score}")
     
-    computer_hand = computer_deck(cards)
+    computer_hand = computer_deck()
     computer_score = sum(computer_hand)
     print(f"Computer's first card: {computer_hand[0]}")
 
     while take_another_card():   
-        player_hand.append(random.choice(cards))
+        player_hand.append(random.choice(CARDS))
         player_hand = eleven_into_one(player_hand)
         player_score = sum(player_hand)
         print(f"Your cards: {player_hand}, current score: {player_score}")
         print(f"Computer's first card: {computer_hand[0]}")
-        if player_score > 21: break
+        if player_score > 21:
+            break
     
     # Checking who is the winner
     clear()

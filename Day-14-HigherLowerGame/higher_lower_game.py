@@ -12,21 +12,25 @@ score = 0
 is_game_over = False
 winner = {}
 
+
 def get_b_choose():
     while True:
-        b_choose = random.choice(data)
-        if b_choose == a_choose:
+        b_choose_ = random.choice(data)
+        if b_choose_ == a_choose:
             continue
         else:
-            return b_choose
-        
+            return b_choose_
+
+
 b_choose = get_b_choose()
+
 
 def get_input_from_user():
     while True:
         user_choice = input("Who has more followers? Type 'A' or 'B': ").upper()
         if user_choice == 'A': return 'A'
         elif user_choice == 'B': return 'B'
+
 
 def check_answer(user_choice):
     global a_choose, score
@@ -39,7 +43,9 @@ def check_answer(user_choice):
     elif user_choice == 'B' and a_score < b_score:
         a_choose = b_choose
         return score + 1
-    else: return 0
+    else:
+        return 0
+
 
 def format_data(account):
     account_name = account['name']
@@ -48,10 +54,9 @@ def format_data(account):
     return f"{account_name}, a {account_descr}, from {account_country}."
 
 
-
 def game():
     global score, b_choose
-    while is_game_over == False:
+    while not is_game_over:
         clear()
         print(logo)
         if score > 0:
@@ -68,6 +73,7 @@ def game():
             print(f"Sorry, that's wrong. Final score: {final_score}")
             return
         b_choose = get_b_choose()
-    
+
+
 game()
 
