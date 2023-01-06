@@ -24,6 +24,7 @@ class Menu:
         options = ""
         for item in self.menu:
             options += f"{item.name}/"
+        options = options[:-1]
         return options
 
     def find_drink(self, order_name):
