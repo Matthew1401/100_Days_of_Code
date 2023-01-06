@@ -2,31 +2,20 @@ from menu import Menu, MenuItem
 from coffee_maker import CoffeeMaker
 from money_machine import MoneyMachine
 
-coffee_stuff = CoffeeMaker()
+coffee_maker = CoffeeMaker()
 menu = Menu()
-money_stuff = MoneyMachine()
+money_machine = MoneyMachine()
 
-coffee = ''
-while True:
+is_on = True
+while is_on:
     coffee = input(f"What would you like? ({menu.get_items()}): ").lower()
     if coffee == 'off':
-        break
-    if coffee == 'report':
-        coffee_stuff.report()
-        money_stuff.report()
-        continue
-
-    coffee = menu.find_drink(coffee)
-    if coffee is None:
-        continue
-
-    is_resources = coffee_stuff.is_resource_sufficient(coffee)
-    if not is_resources:
-        continue
-
-    print(f"The cost is ${coffee.cost}")
-    is_paid = money_stuff.make_payment(coffee.cost)
-    if not is_paid:
-        continue
-
-    coffee_stuff.make_coffee(coffee)
+        is_on = False
+    elif coffee == 'report':
+        coffee_maker.report()
+        money_machine.report()
+    else:
+        coffee = menu.find_drink(coffee)
+        if coffee is not None and coffee_maker.is_resource_sufficient(coffee)\
+                and money_machine.make_payment(coffee.cost):
+            coffee_maker.make_coffee(coffee)
