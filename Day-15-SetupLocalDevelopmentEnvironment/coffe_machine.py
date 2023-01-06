@@ -84,12 +84,12 @@ def update_resources_and_check_the_money(coffee):
     print(f"The cost is {coffee_cost}")
     print("Insert the coins.")
 
-    quarters = int(input("How many quarters?: "))
-    dimes = int(input("How many dimes?: "))
-    nickles = int(input("How many nickles?: "))
-    pennies = int(input("How many pennies?: "))
+    quarters = int(input("How many quarters?: ")) * 0.25
+    dimes = int(input("How many dimes?: ")) * 0.10
+    nickles = int(input("How many nickles?: ")) * 0.05
+    pennies = int(input("How many pennies?: ")) * 0.01
 
-    user_payment = quarters * 0.25 + dimes * 0.10 + nickles * 0.05 + pennies * 0.01
+    user_payment = quarters + dimes + nickles + pennies
     rest_of_money = round(user_payment - coffee_cost, 2)
 
     if rest_of_money < 0:
@@ -105,7 +105,7 @@ def update_resources_and_check_the_money(coffee):
     return True
 
 
-# TODO: 4. Make a function to start the machine and operate the values from there.
+# TODO: 4. Make a function to start the machine and control the values from there.
 def coffee_machine():
     global money
     while True:
