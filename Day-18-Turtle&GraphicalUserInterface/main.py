@@ -6,12 +6,12 @@ tim = Turtle()
 turtle.colormode(255)
 
 
-def write_a_dashed_line():
-    for _ in range(15):
-        tim.forward(10)
-        tim.up()
-        tim.forward(10)
-        tim.down()
+# def write_a_dashed_line():
+#     for _ in range(15):
+#         tim.forward(10)
+#         tim.up()
+#         tim.forward(10)
+#         tim.down()
 
 
 # def draw_a_triangle():
@@ -79,7 +79,7 @@ def write_a_dashed_line():
 # draw_a_nonagon()
 # draw_a_decagon()
 
-colours = ["red", "tan", "green", "gold", "cyan", "purple", "brown", "magenta", "aquamarine", "pale violet red"]
+# colours = ["red", "tan", "green", "gold", "cyan", "purple", "brown", "magenta", "aquamarine", "pale violet red"]
 
 # def move_up():
 #     tim.up()
@@ -109,13 +109,24 @@ def random_color():
     return r, g, b   # This is a tuple
 
 
-tim.pensize(15)
-tim.speed("fastest")
-directions = [0, 90, 180, 270]
-while True:
-    tim.pencolor(random_color())
-    tim.fd(30)
-    tim.setheading(random.choice(directions))
+# tim.pensize(15)
+# tim.speed("fastest")
+# directions = [0, 90, 180, 270]
+# while True:
+#     tim.pencolor(random_color())
+#     tim.fd(30)
+#     tim.setheading(random.choice(directions))
 
+tim.speed("fastest")
+
+
+def draw_spirograph(size_of_gap):
+    for _ in range(360 // size_of_gap):
+        tim.pencolor(random_color())
+        tim.circle(100)
+        tim.setheading(tim.heading() + size_of_gap)
+
+
+draw_spirograph(6)
 screen = Screen()
 screen.exitonclick()
