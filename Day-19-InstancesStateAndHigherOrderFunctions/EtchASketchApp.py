@@ -33,5 +33,3 @@ screen.onkey(key="c", fun=clear)
 screen.listen()
 
 screen.exitonclick()
-
-
