@@ -1,5 +1,6 @@
 from turtle import Turtle
-PADDLE_SPEED = 20
+PADDLE_SPEED = 25
+BORDER = 220
 
 
 class Paddle(Turtle):
@@ -20,11 +21,11 @@ class Paddle(Turtle):
             self.goto(x=self.x, y=0)
 
     def move_up(self):
-        if self.y < 220:
+        if self.y < BORDER:
             self.y += PADDLE_SPEED
             self.setposition(x=self.x, y=self.y)
 
     def move_down(self):
-        if self.y > -220:
+        if self.y > -BORDER:
             self.y -= PADDLE_SPEED
             self.setposition(x=self.x, y=self.y)

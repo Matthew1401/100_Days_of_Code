@@ -15,13 +15,14 @@ screen.update()
 
 screen.listen()
 # paddle1 moving.
-screen.onkey(key="w", fun=paddle1.move_up)
-screen.onkey(key="s", fun=paddle1.move_down)
+screen.onkey(key="Up", fun=paddle1.move_up)
+screen.onkey(key="Down", fun=paddle1.move_down)
 # paddle2 moving.
-screen.onkey(key="Up", fun=paddle2.move_up)
-screen.onkey(key="Down", fun=paddle2.move_down)
+screen.onkey(key="w", fun=paddle2.move_up)
+screen.onkey(key="s", fun=paddle2.move_down)
 
-while True:
+game_is_on = True
+while game_is_on:
     time.sleep(0.1)
     screen.update()
 
