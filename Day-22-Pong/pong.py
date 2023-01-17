@@ -10,6 +10,7 @@ screen.setup(width=800, height=600)
 screen.bgcolor("black")
 screen.title("Pong")
 screen.tracer(0)
+winning_points = screen.numinput("Winning points", "How many points to win?: ")
 
 ball = Ball()
 r_paddle = Paddle(side="right")
@@ -19,15 +20,15 @@ screen.update()
 
 screen.listen()
 # r_paddle moving.
-screen.onkey(key="Up", fun=r_paddle.move_up)
-screen.onkey(key="Down", fun=r_paddle.move_down)
+screen.onkeypress(key="Up", fun=r_paddle.move_up)
+screen.onkeypress(key="Down", fun=r_paddle.move_down)
 # l_paddle moving.
-screen.onkey(key="w", fun=l_paddle.move_up)
-screen.onkey(key="s", fun=l_paddle.move_down)
+screen.onkeypress(key="w", fun=l_paddle.move_up)
+screen.onkeypress(key="s", fun=l_paddle.move_down)
 
 game_is_on = True
 while game_is_on:
-    time.sleep(0.01)
+    time.sleep(ball.move_speed)
     ball.move()
     screen.update()
 
@@ -52,5 +53,19 @@ while game_is_on:
         scoreboard.r_point()
         screen.update()
         time.sleep(0.5)
+
+    # Checking if r_paddle wins
+    if scoreboard.r_score == winning_points:
+        game_is_on = False
+        ball.hideturtle()
+        scoreboard.game_end("Right")
+        screen.update()
+
+    # Checking if l_paddle wins
+    if scoreboard.l_score == winning_points:
+        game_is_on = False
+        ball.hideturtle()
+        scoreboard.game_end("Left")
+        screen.update()
 
 screen.exitonclick()
