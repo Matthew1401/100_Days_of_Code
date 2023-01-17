@@ -1,6 +1,6 @@
 from turtle import Turtle
 PADDLE_SPEED = 25
-BORDER = 220
+BORDER = 230
 
 
 class Paddle(Turtle):
