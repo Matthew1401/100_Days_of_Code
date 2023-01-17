@@ -8,10 +8,16 @@ class Ball(Turtle):
         self.shape("circle")
         self.up()
         self.color("white")
-        self.y = 0
-        self.x = 0
+        self.x_move = 8
+        self.y_move = 8
 
     def move(self):
-        self.y += 6
-        self.x += 8
-        self.goto(x=self.x, y=self.y)
+        new_x = self.xcor() + self.x_move
+        new_y = self.ycor() + self.y_move
+        self.goto(new_x, new_y)
+
+    def bounce_y(self):
+        self.y_move *= -1
+
+    def bounce_x(self):
+        self.x_move *= -1
