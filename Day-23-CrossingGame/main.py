@@ -25,13 +25,14 @@ while game_is_on:
     car_manager.create_new_car()
 
     # Checking if the player touch the line
-    is_finish = player.is_finish()
-    if is_finish:
+    if player.is_finish():
         scoreboard.increase_scoreboard()
         car_manager.increase_speed()
-        is_finish = False
 
     # Checking if the player touch the car
-
+    for car in car_manager.cars:
+        if player.distance(car) < 23:
+            scoreboard.game_over()
+            game_is_on = False
 
 screen.exitonclick()
