@@ -10,12 +10,12 @@
 with open("./Input/Letters/starting_letter.txt") as letter:
     letter_str = letter.read()
 
-with open("./Input/Names/invited_names.txt").read() as names:
+with open("./Input/Names/invited_names.txt") as names:
     names_str = names.read()
     names_list = names_str.split()
 
 
 for name in names_list:
     letter_end = letter_str.replace("[name]", name)
-    with open(f"./Output/ReadyToSend/letter_for{name}.txt", mode="w") as letter:
+    with open(f"./Output/ReadyToSend/letter_for_{name}.txt", mode="w") as letter:
         letter.write(letter_end)
