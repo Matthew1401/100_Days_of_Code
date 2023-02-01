@@ -24,10 +24,7 @@ while game_is_on:
 
     if user_type == "Exit":
         game_is_on = False
-        missing_states = []
-        for state in all_states:
-            if state not in correct_guesses:
-                missing_states.append(state)
+        missing_states = [state for state in all_states if state not in correct_guesses]
         data = pandas.DataFrame(missing_states)
         data.to_csv("a.csv")
 
@@ -39,7 +36,3 @@ while game_is_on:
     if score == 50:
         states_text.game_over()
         game_is_on = False
-
-
-
-
