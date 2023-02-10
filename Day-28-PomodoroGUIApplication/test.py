@@ -1,2 +1,0 @@
-text = "alalalaa"
-minutes = "lol"
