@@ -4,18 +4,20 @@ import random
 FONT_UP = ("Ariel", 40, "italic")
 FONT_DOWN = ("Ariel", 60, "bold")
 
-# Data reading
+# -------------------------------------------------Data reading------------------------------------------------------- #
 data = pandas.read_csv("ang_pl.csv")
-english_words = data.English.to_list()
-polish_words = data.Polish.to_list()
-list_length = len(english_words)
+words = data.to_dict(orient="records")
+print(words)
+words_length = len(words)
 
 
+# --------------------------------------------------Functions--------------------------------------------------------- #
 def pick_word():
-    index = random.randint(0, list_length - 1)
-    canvas.itemconfig(eng_word, text=english_words[index])
+    index = random.randint(0, words_length - 1)
+    canvas.itemconfig(eng_word, text=words[index]['English'])
 
 
+# -----------------------------------------------------UI------------------------------------------------------------- #
 window = Tk()
 window.title("Flashy")
 window.config(padx=50, pady=50, bg='#B1DCC5')
