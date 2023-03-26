@@ -2,17 +2,8 @@ import datetime as dt
 import smtplib
 import random
 
-# my_email = "motivationlists14@yahoo.com"
-# password = "pleasedonotgotothisaccount"
-#
-# with smtplib.SMTP("smtp.yahoo.com") as connection:
-#     connection.starttls()
-#     connection.login(user=my_email, password=password)
-#     connection.sendmail(
-#         from_addr=my_email,
-#         to_addrs=my_email,
-#         msg="Subject:Hello\n\nThis is the body of my email."
-#     )
+MY_EMAIL = "motivationlists14@yahoo.com"
+PASSWORD = "pleasedonotgotothisaccount"
 
 now = dt.datetime.now()
 weekday = now.weekday()
@@ -22,3 +13,11 @@ if weekday == 6:
         quote = random.choice(all_quotes)
 
     print(quote)
+    with smtplib.SMTP("smtp.yahoo.com") as connection:
+        connection.starttls()
+        connection.login(user=MY_EMAIL, password=PASSWORD)
+        connection.sendmail(
+            from_addr=MY_EMAIL,
+            to_addrs=MY_EMAIL,
+            msg=f"Subject:Monday Motivation\n\n{quote}"
+        )
