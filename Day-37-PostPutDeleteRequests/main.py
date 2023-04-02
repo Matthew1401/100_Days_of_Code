@@ -18,4 +18,18 @@ user_params = {
 
 graph_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs"
 
-requests.post()
+graph_config = {
+    "id": "graph1",
+    "name": "Praying Graph",
+    "unit": "Bible vers and Love",
+    "type": "float",
+    "color": "momiji"
+}
+
+headers = {
+    "X-USER-TOKEN": TOKEN
+}
+
+response = requests.post(url=graph_endpoint, json=graph_config, headers=headers)
+print(response.text)
+
