@@ -9,7 +9,15 @@ class DataManager:
         self. sheet_endpoint = sheet_endpoint
 
     def get_data(self):
-        sheet_response = requests.get(self.sheet_endpoint, auth=self.basic)
-        return sheet_response.json()["arkusz1"]
+        sheet_response = requests.get(self.sheet_endpoint, auth=self.basic).json()
+
+        for row in sheet_response["arkusz1"]:
+            if row["iataCode"] == "":
+                row["iataCode"] = "TESTING"
+                send_data = {"arkusz1": row}
+                check = requests.put(self.sheet_endpoint + f'/{row["id"]}', json=send_data, auth=self.basic)
+                print(check.text)
+
+        return sheet_response["arkusz1"]
 
 
