@@ -1,23 +1,29 @@
-import requests
-from requests.auth import HTTPBasicAuth
-
-
-class DataManager:
-
-    def __init__(self, username, password, sheet_endpoint):
-        self.basic = HTTPBasicAuth(username, password)
-        self. sheet_endpoint = sheet_endpoint
-
-    def get_data(self):
-        sheet_response = requests.get(self.sheet_endpoint, auth=self.basic).json()
-
-        for row in sheet_response["arkusz1"]:
-            if row["iataCode"] == "":
-                row["iataCode"] = "TESTING"
-                send_data = {"arkusz1": row}
-                check = requests.put(self.sheet_endpoint + f'/{row["id"]}', json=send_data, auth=self.basic)
-                print(check.text)
-
-        return sheet_response["arkusz1"]
-
-
+# from pprint import pprint
+# import requests
+#
+# SHEETY_PRICES_ENDPOINT = YOUR SHEETY PRICES ENDPOINT
+#
+#
+# class DataManager:
+#
+#     def __init__(self):
+#         self.destination_data = {}
+#
+#     def get_destination_data(self):
+#         response = requests.get(url=SHEETY_PRICES_ENDPOINT)
+#         data = response.json()
+#         self.destination_data = data["prices"]
+#         return self.destination_data
+#
+#     def update_destination_codes(self):
+#         for city in self.destination_data:
+#             new_data = {
+#                 "price": {
+#                     "iataCode": city["iataCode"]
+#                 }
+#             }
+#             response = requests.put(
+#                 url=f"{SHEETY_PRICES_ENDPOINT}/{city['id']}",
+#                 json=new_data
+#             )
+#             print(response.text)
